@@ -1,18 +1,80 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      Login
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <div class="i1"><img src="../../assets/imgs/lib.jpg"></div>
+  <form [formGroup]="forma">
+    <ion-list>
+      <!--<ion-item>
+  <ion-label floating>
+  Name
+  </ion-label>
+  <ion-input type="text" formControlName="Name">
+  </ion-input>
+  </ion-item>
+  <ion-item *ngIf="Name.hasError('required') && Name.touched">
+  <p style="color:red">Name is required</p>
+  </ion-item>
+  -->
+      <ion-item>
+        <ion-label floating>
+          Registration No.
+        </ion-label>
+        <ion-input type="text" formControlName="Reg" [(ngModel)]="name">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="Reg.hasError('required') && Reg.touched">
+        <p style="color:red">Registration No. is required</p>
+      </ion-item>
+      <ion-item *ngIf="( Reg.hasError('minlength') || Reg.hasError('pattern') ) && Reg.touched && !Reg.hasError('required') ">
+        <p style="color:red">Invalid Registration No.</p>
+      </ion-item>
+      <!--
+  <ion-item>
+  <ion-label floating>
+  Email
+  </ion-label>
+  <ion-input type="email" formControlName="Email">
+  </ion-input>
+  </ion-item>
+  <ion-item *ngIf="Email.hasError('pattern') && Email.touched && !Email.hasError('required')">
+  <p style="color:red">Invalid Email</p>
+  </ion-item>
+  <ion-item *ngIf="Email.hasError('required') && Email.touched">
+  <p style="color:red">Email is required</p>
+  </ion-item>
+  <ion-item>
+  <ion-label floating>
+  Contact No.
+  </ion-label>
+  <ion-input type="number" formControlName="Contact">
+  </ion-input>
+  </ion-item>
+  <ion-item *ngIf="Contact.hasError('required') && Contact.touched">
+  <p style="color:red">Contact No. is required</p>
+  </ion-item>
+  <ion-item *ngIf="Contact.hasError('minlength') && Contact.touched && !Contact.hasError('required')">
+  <p style="color:red">Invalid No.</p>
+  </ion-item>
+  
+  -->  <ion-item><ion-label floating>
+      Password
+    </ion-label>
+    <ion-input type="password"  formControlName="pass" [(ngModel)]="password">
+    </ion-input>
+  </ion-item>
+ 
+    </ion-list>
+    <button ion-button type="submit" (click)="submit()" [disabled]="!forma.valid" class="b1">Submit</button>
+  </form>
+ 
+     
 </ion-content>
+<ion-footer>
+    <button ion-button full color="light" (click)="admin()">New here - Register here</button>
+  </ion-footer>
