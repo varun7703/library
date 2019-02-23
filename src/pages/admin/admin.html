@@ -50,8 +50,8 @@
   </ion-list>
   
   
-  <button ion-button (click)="getdata()">give data</button>
-    <button ion-button (click)="deldata()">del data</button>
+  <button ion-button (click)="getdata()" [disabled]="!formb.valid" >give data</button>
+    <button ion-button (click)="deldata()" [disabled]="!formb.valid">del data</button>
   </form>
   </ion-content>
   
