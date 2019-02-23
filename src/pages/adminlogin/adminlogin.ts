@@ -1,33 +1,46 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { FrontpagePage } from '../frontpage/frontpage';
 import { AdminPage } from '../admin/admin';
 import { RegisterPage } from '../register/register';
 import {Http} from '@angular/http';
-import { AdminloginPage } from '../adminlogin/adminlogin';
+import { AdminregisterPage } from '../adminregister/adminregister';
 
 
+/**
+ * Generated class for the AdminloginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-adminlogin',
+  templateUrl: 'adminlogin.html',
 })
-export class HomePage {
+export class AdminloginPage {
   name: any;
   forma: FormGroup;
   password:any;
   Reg: AbstractControl;
   pass:AbstractControl;
   
+
   constructor(public navCtrl: NavController, public np: NavParams, public fb: FormBuilder, private http:Http) {
     this.forma = fb.group({
  
-      Reg: ['', [Validators.required, Validators.minLength(14), Validators.pattern('^[RA0-9]+$')]],
+      Reg: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[0-9]+$')]],
       pass:['',[Validators.required,Validators.minLength(8)]]
     });
     
     this.Reg = this.forma.controls['Reg'];
     this.pass=this.forma.controls['pass'];
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AdminloginPage');
   }
   submit(){
     let body = {
@@ -40,17 +53,15 @@ export class HomePage {
           alert("Password incorrect");
     }
     else{
-      this.navCtrl.setRoot(FrontpagePage,{ data:this.name})
+      this.navCtrl.setRoot(AdminPage)
       }
     })
       
      
   }
   admin(){
-    this.navCtrl.push(RegisterPage)
+    this.navCtrl.push(AdminregisterPage)
    
 }
-a1(){
-  this.navCtrl.setRoot(AdminloginPage)
-}
+
 }

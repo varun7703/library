@@ -14,19 +14,29 @@
 
 
 <ion-content padding>
-    <ion-item>
-        <ion-label floating>
-          Registration No.
-        </ion-label>
-        <ion-input type="text"  [(ngModel)]="username">
-        </ion-input>
-      </ion-item> 
-      <ion-item>
-          <ion-label floating>
-            Password
-          </ion-label>
-          <ion-input type="password"  [(ngModel)]="password">
-          </ion-input>
-        </ion-item>
-        <button ion-button  (click)="register()">Register</button>
+        <form [formGroup]="forma">
+            <ion-list>
+              <ion-item>
+                <ion-label floating>
+                  Registration No.
+                </ion-label>
+                <ion-input type="text" formControlName="Reg" [(ngModel)]="username">
+                </ion-input>
+              </ion-item>
+              <ion-item *ngIf="Reg.hasError('required') && Reg.touched">
+                <p style="color:red">Registration No. is required</p>
+              </ion-item>
+              <ion-item *ngIf="( Reg.hasError('minlength') || Reg.hasError('pattern') ) && Reg.touched && !Reg.hasError('required') ">
+                <p style="color:red">Invalid Registration No.</p>
+              </ion-item>
+          <ion-item><ion-label floating>
+              Password
+            </ion-label>
+            <ion-input type="password"  formControlName="pass" [(ngModel)]="password">
+            </ion-input>
+          </ion-item>
+         
+            </ion-list>
+            <button ion-button type="submit" (click)="register()" [disabled]="!forma.valid" class="b1">Submit</button>
+          </form>
 </ion-content>

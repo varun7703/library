@@ -42,8 +42,8 @@ else{alert("failed");}
   ionViewDidLoad() {
     console.log('ionViewDidLoad FrontpagePage');
   }
-  p1() {
-    this.navCtrl.push(PaymentPage,{data:this.items[0]})
+  p1(item) {
+    this.navCtrl.push(PaymentPage,{data:item})
   }
 
 }

@@ -1,34 +1,57 @@
 <ion-header>
     <ion-navbar>
       <ion-title>
-      API DEMO
+      Input the details
       </ion-title>
+      <ion-buttons start>
+          <button ion-button icon-only (click)="a1()">
+            <ion-icon name="log-out"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
   </ion-header>
   
   <ion-content padding>
+      <form [formGroup]="formb">
   <ion-list>  
   <ion-item>
-    <ion-label floating>book</ion-label>
-    <ion-input [(ngModel)]="book"></ion-input>
+    <ion-label floating>Book Name</ion-label>
+    <ion-input [(ngModel)]="book" formControlName="book1"></ion-input>
     </ion-item>
+    <ion-item *ngIf="book1.hasError('required') && book1.touched">
+        <p style="color:red">Book name is required</p>
+      </ion-item>
     <br>
-    <ion-item>
-    <ion-label floating>due date</ion-label>
-    <ion-input [(ngModel)]="due"></ion-input>
-  </ion-item>
+  <ion-item>
+      <ion-label>Due Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="due" formControlName="due1"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="due1.hasError('required') && due1.touched">
+        <p style="color:red">Due Date is required</p>
+      </ion-item>
   <br>
   <ion-item>
-    <ion-label floating>issue date</ion-label>
-    <ion-input [(ngModel)]="issue"></ion-input><br>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>username</ion-label>
-    <ion-input [(ngModel)]="username"></ion-input>
+      <ion-label> Issue Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="issue" formControlName="issue1"></ion-datetime>
     </ion-item>
+    <ion-item *ngIf="issue1.hasError('required') && issue1.touched">
+        <p style="color:red">Issue date is required</p>
+      </ion-item>
+  <ion-item>
+    <ion-label floating>Issuer's Registration No.</ion-label>
+    <ion-input [(ngModel)]="username" formControlName="user1"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="user1.hasError('required') && user1.touched">
+        <p style="color:red">Registration No. is required</p>
+      </ion-item>
+      <ion-item *ngIf="( user1.hasError('minlength') || user1.hasError('pattern') ) && user1.touched && !user1.hasError('required') ">
+          <p style="color:red">Invalid Registration No.</p>
+        </ion-item>
   </ion-list>
+  
   
   <button ion-button (click)="getdata()">give data</button>
     <button ion-button (click)="deldata()">del data</button>
+  </form>
   </ion-content>
   

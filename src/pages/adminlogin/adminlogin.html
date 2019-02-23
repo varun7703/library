@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Login
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <div class="i1"><img src="../../assets/imgs/lib.jpg"></div>
+    <form [formGroup]="forma">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>
+            Employee No.
+          </ion-label>
+          <ion-input type="text" formControlName="Reg" [(ngModel)]="name">
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="Reg.hasError('required') && Reg.touched">
+          <p style="color:red">Employee No. is required</p>
+        </ion-item>
+        <ion-item *ngIf="( Reg.hasError('minlength') || Reg.hasError('pattern') ) && Reg.touched && !Reg.hasError('required') ">
+          <p style="color:red">Invalid Employee No.</p>
+        </ion-item>
+    <ion-item><ion-label floating>
+        Password
+      </ion-label>
+      <ion-input type="password"  formControlName="pass" [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="pass.hasError('required') && pass.touched">
+        <p style="color:red">Password is required</p>
+      </ion-item>
+      <ion-item *ngIf=" pass.hasError('minlength')  && pass.touched && !pass.hasError('required') ">
+        <p style="color:red">Invalid Password</p>
+      </ion-item>
+   
+      </ion-list>
+      <button ion-button type="submit" (click)="submit()" [disabled]="!forma.valid" class="b1">Submit</button>
+    </form>
+   
+       
+  </ion-content>
+  <ion-footer>
+      <button ion-button full color="light" (click)="admin()">New here - Register here</button>
+    </ion-footer>

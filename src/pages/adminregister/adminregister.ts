@@ -3,9 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { AdminloginPage } from '../adminlogin/adminlogin';
 
 /**
- * Generated class for the RegisterPage page.
+ * Generated class for the AdminregisterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,27 +14,31 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+  selector: 'page-adminregister',
+  templateUrl: 'adminregister.html',
 })
-export class RegisterPage {
-username:any;
-password:any;
-Reg: AbstractControl;
-pass:AbstractControl;
-forma:FormGroup;
+export class AdminregisterPage {
+  username:any;
+  password:any;
+  Reg: AbstractControl;
+  pass:AbstractControl;
+  forma:FormGroup;
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder, private http:Http ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder, private http:Http) {
     this.forma = fb.group({
  
-      Reg: ['', [Validators.required, Validators.minLength(15), Validators.pattern('^[A-Z0-9]+$')]],
+      Reg: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[0-9]+$')]],
       pass:['',[Validators.required, Validators.minLength(8)]]
     });
     
     this.Reg = this.forma.controls['Reg'];
     this.pass=this.forma.controls['pass'];
-  
+ 
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AdminregisterPage');
   }
 
   register(){
@@ -52,9 +57,6 @@ forma:FormGroup;
       }
     }
     })
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
   }
 
 }
